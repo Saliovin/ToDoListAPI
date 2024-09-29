@@ -1,6 +1,6 @@
 # TODO List API
 
-A simple TODO list API to demonstrate [Fractional](https://begriffs.com/posts/2018-03-20-user-defined-order.html) and [Lexorank](https://yasoob.me/posts/how-to-efficiently-reorder-or-rerank-items-in-database/#approach-3-order-items-using-lexorank) sorting solutions for user defined order
+A simple TODO list API to demonstrate [Fractional](https://begriffs.com/posts/2018-03-20-user-defined-order.html#approach-3-true-fractions) and [Lexorank](https://yasoob.me/posts/how-to-efficiently-reorder-or-rerank-items-in-database/#approach-3-order-items-using-lexorank) sorting solutions for user defined order
 
 Built with FastAPI
 
