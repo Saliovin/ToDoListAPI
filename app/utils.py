@@ -1,6 +1,7 @@
 import math
 
 
+# Fractional Implementation
 def get_mid_fraction(prev_fraction, next_fraction):
     numerator = prev_fraction["numerator"] + next_fraction["numerator"]
     denominator = prev_fraction["denominator"] + next_fraction["denominator"]
@@ -9,9 +10,6 @@ def get_mid_fraction(prev_fraction, next_fraction):
 
 
 # Lexorank Implementation
-# alphanum = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-
-
 def get_mid_rank(prev_rank="0", next_rank="z"):
     rank = ""
     i = 0
