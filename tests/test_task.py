@@ -38,6 +38,10 @@ def test_get_tasks(setup):
     assert response.status_code == 200
     assert response.json() == []
 
+    response = client.get("/tasks/rank")
+    assert response.status_code == 200
+    assert response.json() == []
+
 
 def test_post_task(setup):
     response = client.post(
@@ -114,9 +118,8 @@ def test_move_task(setup):
         "denominator": 2,
         "rank": "m",
     }
-    response = client.get("/tasks/")
-    assert response.status_code == 200
-    assert response.json() == [
+
+    expected = [
         {
             "denominator": 1,
             "id": 1,
@@ -142,6 +145,14 @@ def test_move_task(setup):
             "task_detail": "test2",
         },
     ]
+
+    response = client.get("/tasks/")
+    assert response.status_code == 200
+    assert response.json() == expected
+
+    response = client.get("/tasks/rank")
+    assert response.status_code == 200
+    assert response.json() == expected
 
 
 def test_move_task_start(setup):
@@ -170,9 +181,8 @@ def test_move_task_start(setup):
         "denominator": 2,
         "rank": "L",
     }
-    response = client.get("/tasks/")
-    assert response.status_code == 200
-    assert response.json() == [
+
+    expected = [
         {
             "denominator": 2,
             "id": 3,
@@ -198,6 +208,14 @@ def test_move_task_start(setup):
             "task_detail": "test2",
         },
     ]
+
+    response = client.get("/tasks/")
+    assert response.status_code == 200
+    assert response.json() == expected
+
+    response = client.get("/tasks/rank")
+    assert response.status_code == 200
+    assert response.json() == expected
 
 
 def test_move_task_end(setup):
@@ -226,9 +244,8 @@ def test_move_task_end(setup):
         "denominator": 1,
         "rank": "w",
     }
-    response = client.get("/tasks/")
-    assert response.status_code == 200
-    assert response.json() == [
+
+    expected = [
         {
             "denominator": 1,
             "id": 1,
@@ -254,6 +271,14 @@ def test_move_task_end(setup):
             "task_detail": "test2",
         },
     ]
+
+    response = client.get("/tasks/")
+    assert response.status_code == 200
+    assert response.json() == expected
+
+    response = client.get("/tasks/rank")
+    assert response.status_code == 200
+    assert response.json() == expected
 
 
 def test_move_task_jump(setup):
@@ -286,9 +311,8 @@ def test_move_task_jump(setup):
         "denominator": 2,
         "rank": "v",
     }
-    response = client.get("/tasks/")
-    assert response.status_code == 200
-    assert response.json() == [
+
+    expected = [
         {
             "denominator": 1,
             "id": 2,
@@ -323,6 +347,14 @@ def test_move_task_jump(setup):
         },
     ]
 
+    response = client.get("/tasks/")
+    assert response.status_code == 200
+    assert response.json() == expected
+
+    response = client.get("/tasks/rank")
+    assert response.status_code == 200
+    assert response.json() == expected
+
 
 def test_move_task_multiple(setup):
     client.post(
@@ -341,6 +373,7 @@ def test_move_task_multiple(setup):
         "/tasks/",
         json={"task_detail": "test4"},
     )
+
     ctr = 0
     while ctr < 51:
         if ctr % 2 == 0:
@@ -363,9 +396,8 @@ def test_move_task_multiple(setup):
         "denominator": 2,
         "rank": "m",
     }
-    response = client.get("/tasks/")
-    assert response.status_code == 200
-    assert response.json() == [
+
+    expected = [
         {
             "denominator": 1,
             "id": 1,
@@ -400,6 +432,14 @@ def test_move_task_multiple(setup):
         },
     ]
 
+    response = client.get("/tasks/")
+    assert response.status_code == 200
+    assert response.json() == expected
+
+    response = client.get("/tasks/rank")
+    assert response.status_code == 200
+    assert response.json() == expected
+
 
 def test_move_task_deep(setup):
     client.post(
@@ -418,6 +458,7 @@ def test_move_task_deep(setup):
         "/tasks/",
         json={"task_detail": "test4"},
     )
+
     ctr = 0
     while ctr < 101:
         if ctr % 2 == 0:
@@ -432,9 +473,8 @@ def test_move_task_deep(setup):
             )
         assert response.status_code == 200
         ctr += 1
-    response = client.get("/tasks/")
-    assert response.status_code == 200
-    assert response.json() == [
+
+    expected = [
         {
             "denominator": 1,
             "id": 1,
@@ -468,3 +508,11 @@ def test_move_task_deep(setup):
             "task_detail": "test4",
         },
     ]
+
+    response = client.get("/tasks/")
+    assert response.status_code == 200
+    assert response.json() == expected
+
+    response = client.get("/tasks/rank")
+    assert response.status_code == 200
+    assert response.json() == expected
