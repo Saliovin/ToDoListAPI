@@ -2,6 +2,8 @@
 
 A simple TODO list API to demonstrate [Fractional](https://begriffs.com/posts/2018-03-20-user-defined-order.html#approach-3-true-fractions) and [Lexorank](https://yasoob.me/posts/how-to-efficiently-reorder-or-rerank-items-in-database/#approach-3-order-items-using-lexorank) sorting solutions for user defined order
 
+Live demo available [here](https://todo.labtoast.com/docs)
+
 Built with FastAPI
 
 ## Database
@@ -25,6 +27,29 @@ Built with FastAPI
 | id  | task_detail | numerator | denominator | order | rank |
 | :-: | :---------: | :-------: | :---------: | :---: | :--: |
 |  0  |  Get lunch  |     1     |      1      |   1   |  i   |
+
+## Usage
+
+### Routes
+
+- GET /tasks
+  - Get all tasks, ordered by the order column(Fractional)
+- GET /tasks/rank
+  - Get all tasks, ordered by the rank column(Lexorank)
+- POST /tasks
+  - Add a new task to the end of the list
+- PUT /tasks/{task_id}
+  - Get a task by its id and update its task_detail
+- PUT /tasks/move/{task_id}
+  - Get a task by its id and move it
+  - Use only next_task_id if moving to the start
+  - Use only prev_task_id if moving to the end
+  - Use both if moving in-between tasks
+  - Updates a task's numerator, denominator, order, and rank
+- DELETE /tasks/{task_id}
+  - Get a task by its id and delete it
+
+_Check the [docs](https://todo.labtoast.com/docs) for the body schemas of each route_
 
 ## Project Setup
 
